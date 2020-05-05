@@ -1,0 +1,7 @@
+使用FFmpeg读取视频流并保存
+https://blog.csdn.net/qq_33316004/article/details/100113963
+
+Qt+FFmpeg播放RTSP H264视频流（3）- RTSP视频流播放
+https://blog.csdn.net/eastcnme/article/details/94850984
+
+
