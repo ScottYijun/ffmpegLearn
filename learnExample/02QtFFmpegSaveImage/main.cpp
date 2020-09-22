@@ -46,7 +46,7 @@ int main()
 #elif _WIN32
     cout << "Hello FFmpeg(32bitλ)!" << endl;
 #endif
-    char *file_path = "F:\\github\\ffmpegLearn\\learnExample\\win\\mp4\\lasa.mp4";
+    char *file_path = (char*)"F:\\github\\ffmpegLearn\\learnExample\\win\\mp4\\lasa.mp4";
 
     AVFormatContext *pFormatCtx;
     AVCodecContext *pCodecCtx;

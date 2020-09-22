@@ -360,7 +360,7 @@ int MainWindow::playAudio(char *filepath)
     SDL_UnlockAudio();
     SDL_PauseAudio(0);
     ///  打开SDL播放设备 - 结束
-
+    printf("打开SDL播放设备 - 结束=======================================.\n");
     //初始化音频队列
     audioq = new PacketQueue;
     packet_queue_init(audioq);

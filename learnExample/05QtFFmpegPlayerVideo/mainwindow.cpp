@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QPainter>
 #include <QFileDialog>
-#include "CMyFFmpeg.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

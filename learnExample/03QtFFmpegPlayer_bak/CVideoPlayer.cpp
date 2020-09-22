@@ -118,8 +118,8 @@ void CVideoPlayer::videoDecode()
                 QImage image = tempImage.copy();//把图像复制一份 传递给界面显示
                 qDebug() << "image.width==" << image.width() << "image.height==" << image.height();
                 emit signalGetOneFrame(image);
-                //if (index > 10)
-                //    return; //这里我们就保存10张图片
+                if (index > 10)
+                    return; //这里我们就保存10张图片
             }
         }
         av_free_packet(packet);

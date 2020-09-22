@@ -29,14 +29,47 @@ void MainWindow::initView()
 void MainWindow::initData()
 {
     //av_register_all();//这个函数已被弃用
+    connect(ui->pushButton_OpenVideo, SIGNAL(clicked()), this, SLOT(slotOpenFile()));
+    connect(ui->pushButton_play, SIGNAL(clicked()), this, SLOT(slotPlay()));
 }
 
+//void MainWindow::slotOpenFile()
+//{
+//    QString fileName = QFileDialog::getOpenFileName(this, QString::fromLocal8Bit("打开视频文件"));
+//    if(fileName.isEmpty())
+//        return;
+//    ui->lineEdit_videoPath->setText(fileName);
+//    qDebug() << "fileName========" << fileName;
+//    CMyFFmpeg::GetObj()->openVideo(fileName.toLocal8Bit());
+//    CMyFFmpeg::GetObj()->m_isPlay = true;
+//    ui->pushButton_play->setText(QString::fromLocal8Bit("暂停"));
+//}
 
+//void MainWindow::slotPlay()
+//{
+//    if(ui->pushButton_play->text() == QString::fromLocal8Bit("暂停"))
+//    {
+//        CMyFFmpeg::GetObj()->m_isPlay = false;
+//        ui->pushButton_play->setText(QString::fromLocal8Bit("播放"));
+//    }
+//    else
+//    {
+//        CMyFFmpeg::GetObj()->m_isPlay = true;
+//        ui->pushButton_play->setText(QString::fromLocal8Bit("暂停"));
+//    }
+//}
 
 //--------------------------------------------------
 //http://blog.yundiantech.com/?log=blog&id=9 视频图片显示
 void MainWindow::showVideo()
 {
+    ui->openGLWidget->hide();
+    ui->label->hide();
+    ui->pushButton_play->hide();
+    ui->lineEdit_videoPath->hide();
+    ui->pushButton_barrage->hide();
+    ui->pushButton_cutImage->hide();
+    ui->pushButton_OpenVideo->hide();
     m_pVideoPlayer = new CVideoPlayer();
     connect(m_pVideoPlayer, SIGNAL(signalDecodeError(int)), this, SLOT(slotDecodeError(int)));
     connect(m_pVideoPlayer, SIGNAL(signalGetOneFrame(QImage)), this, SLOT(slotGetOneFrame(QImage)));
@@ -56,7 +89,7 @@ void MainWindow::slotGetOneFrame(QImage image)
 
 void MainWindow::paintEvent(QPaintEvent *)
 {
-    //return;//与showVideo()函数一起使用
+    return;//与showVideo()函数一起使用
 
     QPainter painter(this);
     painter.setBrush(Qt::black);

@@ -47,11 +47,12 @@ win32{
 
     contains(QT_ARCH, i386) {
     message("32-bit")
+    QMAKE_LFLAGS += -shared
     INCLUDEPATH += $$PWD/../win/bin32/include
-    $$PWD/src
+    INCLUDEPATH += $$PWD/../win/bin32/include/SDL2
 
     LIBS += -L$$PWD/../win/bin32/lib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lpostproc -lswresample -lswscale
-
+    LIBS += -L$$PWD/../win/bin32/lib -lSDL2
 } else {
     message("64-bit")
     INCLUDEPATH += $$PWD/../win/bin64/include
