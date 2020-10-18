@@ -23,9 +23,7 @@ public:
 public slots:
     void slotDecodeError(int error);
     void slotGetOneFrame(QImage image);
-    //V2°æ
-//    void slotOpenFile();
-//    void slotPlay();
+
 
 protected:
     void paintEvent(QPaintEvent *event);
