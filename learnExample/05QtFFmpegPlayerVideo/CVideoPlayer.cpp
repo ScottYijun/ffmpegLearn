@@ -2,47 +2,7 @@
 #include <stdio.h>
 #include <QDebug>
 
-extern "C"
-{
-#include "libavcodec/avcodec.h"
-#include "libavformat/avformat.h"
-#include "libswscale/swscale.h"
-#include "libavdevice/avdevice.h"
 
-#include <libavutil/time.h>
-#include "libavutil/pixfmt.h"
-#include "libswresample/swresample.h"
-
-#include <SDL.h>//这个不要放在头文件包含中，否则报main函数冲突
-//#include <SDL_audio.h>
-//#include <SDL_types.h>
-//#include <SDL_name.h>
-//#include <SDL_main.h>
-//#include <SDL_config.h>
-}
-
-typedef struct PacketQueue {
-    AVPacketList *first_pkt, *last_pkt;
-    int nb_packets;
-    int size;
-    SDL_mutex *mutex;
-    SDL_cond *cond;
-} PacketQueue;
-
-#define VIDEO_PICTURE_QUEUE_SIZE 1
-#define AVCODEC_MAX_AUDIO_FRAME_SIZE 192000 // 1 second of 48khz 32bit audio
-
-typedef struct VideoState {
-    AVCodecContext *aCodecCtx; //音频解码器
-    AVFrame *audioFrame;// 解码音频过程中的使用缓存
-    PacketQueue *audioq;
-    double video_clock; ///<pts of last decoded frame / predicted pts of next decoded frame
-    AVStream *video_st;
-} VideoState;
-
-#define SDL_AUDIO_BUFFER_SIZE 1024
-
-VideoState mVideoState; //用来 传递给 SDL音频回调函数的数据
 
 void packet_queue_init(PacketQueue *q) {
     memset(q, 0, sizeof(PacketQueue));
@@ -257,7 +217,8 @@ void CVideoPlayer::run()
 
 void CVideoPlayer::videoDecode()
 {
-    char *filePath = (char*)"F:\\github\\QtPlayLearn\\win\\mp4\\lasa.mp4";
+    //char *filePath = (char*)"F:\\github\\QtPlayLearn\\win\\mp4\\lasa.mp4";
+    char *filePath = (char*)"F:\\github\\ffmpegLearn\\learnExample\\win\\mp4\\liangliang.mp4";
     AVFormatContext *pFormatCtx;
     AVCodecContext *pCodecCtx;
     AVCodec *pCodec;
