@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QPainter>
 #include <QFileDialog>
+#include "CCustomTitle.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -10,6 +11,15 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //this->setWindowFlags(Qt::FramelessWindowHint |
+    //                     Qt::WindowSystemMenuHint |
+    //                     Qt::WindowMinMaxButtonsHint);
+    //自定义菜单栏
+//    ui->widget_title = new CCustomTitle(this);
+//    ui->widget_title->setMaximumHeight(35);
+//    ui->widget_title->setMinimumHeight(35);
+//    ui->widget_title->setMaximumWidth(this->width());
+//    ui->widget_title->setMinimumWidth(this->width());
     initView();
     initData();
     showVideo();

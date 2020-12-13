@@ -17,23 +17,17 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="spacing">
-     <number>20</number>
+   <widget class="QWidget" name="widget_title" native="true">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>11</y>
+      <width>780</width>
+      <height>41</height>
+     </rect>
     </property>
-   </layout>
+   </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>802</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

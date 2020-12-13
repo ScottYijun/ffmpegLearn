@@ -218,7 +218,11 @@ void CVideoPlayer::run()
 void CVideoPlayer::videoDecode()
 {
     //char *filePath = (char*)"F:\\github\\QtPlayLearn\\win\\mp4\\lasa.mp4";
-    char *filePath = (char*)"F:\\github\\ffmpegLearn\\learnExample\\win\\mp4\\liangliang.mp4";
+    //char *filePath = (char*)"F:\\github\\ffmpegLearn\\learnExample\\win\\mp4\\liangliang.mp4";
+    //char *filePath = (char*)"E:\\dy\\tianshuqiyuanHD2160p.mp4";
+    //char *filePath = (char*)"E:\\dy\\13lieshaHD1080p.mp4";
+    char *filePath = (char*)"E:\\dy\\shendunjun_7_11.mkv";
+
     AVFormatContext *pFormatCtx;
     AVCodecContext *pCodecCtx;
     AVCodec *pCodec;

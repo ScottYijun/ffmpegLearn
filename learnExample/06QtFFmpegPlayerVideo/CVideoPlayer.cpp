@@ -205,6 +205,7 @@ static double synchronize_video(VideoState *is, AVFrame *src_frame, double pts) 
     is->video_clock += frame_delay;
     return pts;
 }
+
 CVideoPlayer::CVideoPlayer()
 {
 
@@ -217,8 +218,11 @@ void CVideoPlayer::run()
 
 void CVideoPlayer::videoDecode()
 {
-    char *filePath = (char*)"F:\\github\\QtPlayLearn\\win\\mp4\\lasa.mp4";
+    //char *filePath = (char*)"F:\\github\\QtPlayLearn\\win\\mp4\\lasa.mp4";
     //char *filePath = (char*)"F:\\github\\ffmpegLearn\\learnExample\\win\\mp4\\liangliang.mp4";
+    //char *filePath = (char*)"E:\\dy\\tianshuqiyuanHD2160p.mp4";
+    //char *filePath = (char*)"E:\\dy\\13lieshaHD1080p.mp4";
+    char *filePath = (char*)"E:\\dy\\shendunjun_7_11.mkv";
     AVFormatContext *pFormatCtx;
     AVCodecContext *pCodecCtx;
     AVCodec *pCodec;
@@ -368,9 +372,10 @@ void CVideoPlayer::videoDecode()
         }
 
         int64_t realTime = av_gettime() - start_time; //主时钟时间
+        qDebug() << "pts===============" << pts << "===realTime===" << realTime;
         while(pts > realTime)
         {
-            SDL_Delay(10);
+            SDL_Delay(10);//这个延迟要可调才对吧？
             realTime = av_gettime() - start_time; //主时钟时间
         }
         if(packet->stream_index == videoStream)
@@ -394,7 +399,7 @@ void CVideoPlayer::videoDecode()
             {
                 pts = 0;
             }
-
+            qDebug() << "pts==========" << pts << "===packet->dts===" << packet->dts;
             pts *= 1000000 * av_q2d(mVideoState.video_st->time_base);
             pts = synchronize_video(&mVideoState, pFrame, pts);
             //--------
@@ -406,7 +411,7 @@ void CVideoPlayer::videoDecode()
                 //把这个RGB数据 用QImage加载
                 QImage tempImage((uchar*)outBuffer, pCodecCtx->width, pCodecCtx->height, QImage::Format_RGB32);
                 QImage image = tempImage.copy();//把图像复制一份 传递给界面显示
-                qDebug() << "image.width==" << image.width() << "image.height==" << image.height();
+                //qDebug() << "image.width==" << image.width() << "image.height==" << image.height();
                 emit signalGetOneFrame(image);
             }
 
